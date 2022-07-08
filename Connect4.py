@@ -11,14 +11,14 @@ class Board():
             self.columnsList.append(Column(maxRows))
 
     def addToken(self, column, color):
-        if 0 <= column < self.maxCols
-            return self.columnList[column].addToken(color)
+        if 0 <= column < self.maxCols:
+            return self.columnsList[column].addToken(color)
         else :
              return None
 
     def getToken(self, column, row):
         if 0 <= column < self.maxCols :
-            return self.columnList[column].getToken(row)
+            return self.columnsList[column].getToken(row)
         return None
 
     def step(self, col, row, direction):
@@ -68,18 +68,18 @@ class Board():
 
     def isFull(self):
         for col in range(self.maxCols):
-            if self.columnsList[col].isFull() == False
+            if self.columnsList[col].isFull() == False:
                 return False
         return True
 
-    def print(self):
+    def printBoard(self):
         for row in range(self.maxRows):
             print("|", end = "")
             for col in range(self.maxCols):
-                if self.getToken(col, row) == None:
+                if self.getToken(col, self.maxRows - 1 - row) == None:
                     print("-", end = "")
                 else:
-                    if self.getToken(col, row).color == "bleu"
+                    if self.getToken(col, self.maxRows - 1 - row).color == "bleu":
                         print("o", end = "")
                     else :
                         print ("x", end = "")
@@ -97,40 +97,40 @@ class Column():
         return None
 
     def getToken(self, n):
-        if 0 <= n < len(self.tokenList)
+        if 0 <= n < len(self.tokenList):
             return self.tokenList[n]
         return None
 
     def isFull(self):
-        return len(self.tokenList) >= maxRows
+        return len(self.tokenList) >= self.maxRows
 
 class Connect4():
 
-    def __init__(self)
-        self.board = Board()
+    def __init__(self):
+        self.board = Board(6, 7)
 
 
-    def startGame(self)
+    def startGame(self):
         currentPlayer = "bleu"
         ingame = True
-        while ingame = True
-            self.board.print()
+        while ingame == True:
+            self.board.printBoard()
             answer = input("c'est au joueur " + currentPlayer + " de jouer, choisissez une colonne entre 1 et 6")
             col = int(answer) - 1
             row = self.board.addToken(col, currentPlayer)
             if row == None :
                 print("impossible d'ajouter le jeton à cette colonne")
-            if board.WinningConnection(col, row, currentPlayer):
-                ingame = False:
+            if self.board.winningConnection(col, row, currentPlayer):
+                ingame = False
                 print(currentPlayer + " a gagné")
-            elif board.isFull() == True:
-                inGame = False
+            elif self.board.isFull() == True:
+                ingame = False
                 print("toutes les colonnes sont pleines, égalité")
             else :
                 if currentPlayer == "bleu":
                     currentPlayer = "rouge"
                 else :
-                    currentPlayer = "rouge"
+                    currentPlayer = "bleu"
 
 
 
