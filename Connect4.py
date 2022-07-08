@@ -72,6 +72,19 @@ class Board():
                 return False
         return True
 
+    def print(self):
+        for row in range(self.maxRows):
+            print("|", end = "")
+            for col in range(self.maxCols):
+                if self.getToken(col, row) == None:
+                    print("-", end = "")
+                else:
+                    if self.getToken(col, row).color == "bleu"
+                        print("o", end = "")
+                    else :
+                        print ("x", end = "")
+            print("|")
+
 class Column():
     def __init__(self, maxRows):
         self.maxRows = maxRows
@@ -101,6 +114,7 @@ class Connect4():
         currentPlayer = "bleu"
         ingame = True
         while ingame = True
+            self.board.print()
             answer = input("c'est au joueur " + currentPlayer + " de jouer, choisissez une colonne entre 1 et 6")
             col = int(answer) - 1
             row = self.board.addToken(col, currentPlayer)
